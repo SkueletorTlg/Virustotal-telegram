@@ -5,7 +5,7 @@
         "telegram",
         "virustotal"
     ],
-    "repository": "https://github.com/uaudith/Virustotal-telegram",
+    "repository": "https://github.com/SkueletorTlg/Virustotal-telegram",
     "env": {
         "APP_ID": {
             "description": "Get this value from https://my.telegram.org",
