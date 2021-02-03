@@ -28,12 +28,12 @@ def progress(client, current, total, message_id, chat_id, start):
 		estimated_total_time = elapsed_time + time_to_completion
 		elapsed_time = TimeFormatter(milliseconds=elapsed_time)
 		estimated_total_time = TimeFormatter(milliseconds=estimated_total_time)
-		progress = "[{0}{1}] \nPercentage: {2}%\n".format(
+		progress = "[{0}{1}] \nPorcentaje: {2}%\n".format(
 			''.join(["█" for i in range(math.floor(percentage / 5))]),
 			''.join(["░" for i in range(20 - math.floor(percentage / 5))]),
 			round(percentage, 2)
 		)
-		tmp = progress + "{0} of {1}\nSpeed: {2}/s\nETA: {3}\n".format(
+		tmp = progress + "{0} de {1}\Velocidad: {2}/s\nTiempo estimado: {3}\n".format(
 			humanbytes(current),
 			humanbytes(total),
 			humanbytes(speed),
@@ -43,7 +43,7 @@ def progress(client, current, total, message_id, chat_id, start):
 			client.edit_message_text(
 				chat_id,
 				message_id,
-				text="Downloading...\n {}".format(tmp)
+				text="Descargando...\n {}".format(tmp)
 			)
 		except:
 			pass
@@ -77,12 +77,12 @@ def download_telegram_media(client, message):
 	if not message.from_user.id == me :
 		client.send_message(
 			chat_id=message.chat.id,
-			text = 'Please host your own bot at \nhttps://github.com/uaudith/Virustotal-telegram'
+			text = 'Bot creado por @DKzippO'
 		)
 		return
 	msg = client.send_message(
 	  chat_id=message.chat.id,
-	  text='Download is being started...\nPlease Wait !'
+	  text='Se está iniciando la descarga...\n¡Por favor, espera'
 	)
 	start_time = time.time()
 	download_location = client.download_media(
@@ -113,7 +113,7 @@ def check_size(path,userid):
 	print('file size is',b)
 	obj=virus(str(path))
 	if b>32*1024*1024:
-		send_msg(userid,'Sorry This file is larger than 32Mb')
+		send_msg(userid,'Lo sentimos Este archivo es más grande que 32Mb')
 		return
 		obj.large_files()
 	else:
@@ -131,8 +131,8 @@ def check_size(path,userid):
 	if len(viruslist) > 0:
 		names=' , '.join(viruslist)
 		reason='\n'.join(reasons)
-		send_msg(userid,'\n☣ --Threats have been detected !-- ☣\n\n**{}** \n\n\n**Description**\n\n`{}`\n\n[Detailed Report]({})'.format(names,reason,obj.link))
+		send_msg(userid,'\n☣ --¡Se han detectado amenazas!-- ☣\n\n**{}** \n\n\n**Descripción**\n\n`{}`\n\n[Reporte detallado]({})'.format(names,reason,obj.link))
 	else:
-		send_msg(userid,'✔️ File is clean ')
+		send_msg(userid,'✔️ El archivo está limpio ')
 
 app.run()
